@@ -4,7 +4,7 @@ class Berco:
     __tiposDeCargaAceita : str
     __status : str
 
-    def __init__ (self, identificador, capacidade, tiposDeCargaAceita, status):
+    def __init__ (self, identificador:str, capacidade:float, tiposDeCargaAceita:str):
         self.__identificador = identificador
         self.__capacidade = capacidade
         self.__tiposDeCargaAceita = tiposDeCargaAceita
