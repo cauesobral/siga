@@ -15,7 +15,7 @@ url = "https://api.open-meteo.com/v1/forecast"
 params = {
 	"latitude": -23.9608,
 	"longitude": -46.3336,
-	"hourly": ["wind_gusts_10m", "wind_direction_180m", "wind_direction_120m", "wind_direction_80m", "wind_direction_10m", "wind_speed_180m", "wind_speed_120m", "wind_speed_80m", "wind_speed_10m", "precipitation_probability", "precipitation"],
+	"hourly": ["wind_speed_10m", "precipitation", "precipitation_probability"],
 	"timezone": "America/Sao_Paulo",
 }
 responses = openmeteo.weather_api(url, params = params)
@@ -29,17 +29,9 @@ print(f"Timezone difference to GMT+0: {response.UtcOffsetSeconds()}s")
 
 # Process hourly data. The order of variables needs to be the same as requested.
 hourly = response.Hourly()
-hourly_wind_gusts_10m = hourly.Variables(0).ValuesAsNumpy()
-hourly_wind_direction_180m = hourly.Variables(1).ValuesAsNumpy()
-hourly_wind_direction_120m = hourly.Variables(2).ValuesAsNumpy()
-hourly_wind_direction_80m = hourly.Variables(3).ValuesAsNumpy()
-hourly_wind_direction_10m = hourly.Variables(4).ValuesAsNumpy()
-hourly_wind_speed_180m = hourly.Variables(5).ValuesAsNumpy()
-hourly_wind_speed_120m = hourly.Variables(6).ValuesAsNumpy()
-hourly_wind_speed_80m = hourly.Variables(7).ValuesAsNumpy()
-hourly_wind_speed_10m = hourly.Variables(8).ValuesAsNumpy()
-hourly_precipitation_probability = hourly.Variables(9).ValuesAsNumpy()
-hourly_precipitation = hourly.Variables(10).ValuesAsNumpy()
+hourly_wind_speed_10m = hourly.Variables(0).ValuesAsNumpy()
+hourly_precipitation = hourly.Variables(1).ValuesAsNumpy()
+hourly_precipitation_probability = hourly.Variables(2).ValuesAsNumpy()
 
 hourly_data = {
 	"date": pd.date_range(
@@ -50,17 +42,9 @@ hourly_data = {
 	).tz_convert(response.Timezone().decode())
 }
 
-hourly_data["wind_gusts_10m"] = hourly_wind_gusts_10m
-hourly_data["wind_direction_180m"] = hourly_wind_direction_180m
-hourly_data["wind_direction_120m"] = hourly_wind_direction_120m
-hourly_data["wind_direction_80m"] = hourly_wind_direction_80m
-hourly_data["wind_direction_10m"] = hourly_wind_direction_10m
-hourly_data["wind_speed_180m"] = hourly_wind_speed_180m
-hourly_data["wind_speed_120m"] = hourly_wind_speed_120m
-hourly_data["wind_speed_80m"] = hourly_wind_speed_80m
 hourly_data["wind_speed_10m"] = hourly_wind_speed_10m
-hourly_data["precipitation_probability"] = hourly_precipitation_probability
 hourly_data["precipitation"] = hourly_precipitation
+hourly_data["precipitation_probability"] = hourly_precipitation_probability
 
 hourly_dataframe = pd.DataFrame(data = hourly_data)
 print("\nHourly data\n", hourly_dataframe)
