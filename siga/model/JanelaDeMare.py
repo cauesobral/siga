@@ -13,9 +13,10 @@ class JanelaDeMare(EventoDeRisco):
         self._horario = horario
         self._altura_da_mare = altura_da_mare
         self._profundidade_canal = profundidade_canal
-        super().__init__("mare", self.classificar(altura_da_mare),
-                         horario.date(), horario.date())
+        super().__init__("mare", horario.date(), horario.date(),
+                         self.classificar(altura_da_mare))
 
+    @staticmethod
     def classificar(altura: float):
         for limite, nivel in LIMITES_MARE_BAIXA:
             if altura <= limite:
@@ -33,15 +34,15 @@ class JanelaDeMare(EventoDeRisco):
         return self._profundidade_canal + self._altura_da_mare
 
     def folga_sob_quilha(self, navio):
-        return self.profundidade_disponivel - navio.calado
+        return self.profundidade_disponivel() - navio.get_calado()
 
     def permite_atracacao(self, navio):
-        return self.folga_sob_quilha(navio) >= navio.calado * FOLGA_MINIMA_PERCENTUAL
+        return self.folga_sob_quilha(navio) >= navio.get_calado() * FOLGA_MINIMA_PERCENTUAL
 
     def bloqueia_atracacao(self, navio):
         return not self.permite_atracacao(navio)
 
     def descricao(self):
         return (f"Maré {self._horario:%d/%m %H:%M}: {self._altura_da_mare:.2f} m, "
-                f"profundidade disponível {self.profundidade_disponivel:.2f} m "
-                f"(impacto {self.nivel_de_impacto.name})")
+                f"profundidade disponível {self.profundidade_disponivel():.2f} m "
+                f"(impacto {self.get_nivel_de_impacto().name})")

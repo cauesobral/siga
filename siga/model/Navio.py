@@ -22,8 +22,18 @@ class Navio (ABC):
     @abstractmethod
     def tempoEstimadoOperacao():
         pass
-    
-    
-    
 
-    
+    def get_nome(self):
+        return self.__nome
+
+    def get_calado(self):
+        return self.__calado
+
+    def get_tamanho(self):
+        return self.__tamanho
+
+    def get_carga_atual(self):
+        return self.__cargaAtual
+
+    def get_capacidade(self):
+        return self.__capacidade

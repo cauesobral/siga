@@ -1,50 +1,61 @@
-import openmeteo_requests
+import json
+from datetime import datetime
 
-import pandas as pd
-import requests_cache
-from retry_requests import retry
+from CondicaoClimatica import CondicaoClimatica
 
-# Setup the Open-Meteo API client with cache and retry on error
-cache_session = requests_cache.CachedSession('.cache', expire_after = 3600)
-retry_session = retry(cache_session, retries = 5, backoff_factor = 0.2)
-openmeteo = openmeteo_requests.Client(session = retry_session)
 
-# Make sure all required weather variables are listed here
-# The order of variables in hourly or daily is important to assign them correctly below
-url = "https://api.open-meteo.com/v1/forecast"
-params = {
-	"latitude": -23.9608,
-	"longitude": -46.3336,
-	"hourly": ["wind_speed_10m", "precipitation", "precipitation_probability"],
-	"timezone": "America/Sao_Paulo",
-}
-responses = openmeteo.weather_api(url, params = params)
+class ApiClima:
 
-# Process first location. Add a for-loop for multiple locations or weather models
-response = responses[0]
-print(f"Coordinates: {response.Latitude()}°N {response.Longitude()}°E")
-print(f"Elevation: {response.Elevation()} m asl")
-print(f"Timezone: {response.Timezone()}{response.TimezoneAbbreviation()}")
-print(f"Timezone difference to GMT+0: {response.UtcOffsetSeconds()}s")
+    URL = "https://api.open-meteo.com/v1/forecast"
+    VARIAVEIS = ["wind_speed_10m", "wind_gusts_10m", "wind_direction_10m",
+                 "precipitation", "precipitation_probability"]
 
-# Process hourly data. The order of variables needs to be the same as requested.
-hourly = response.Hourly()
-hourly_wind_speed_10m = hourly.Variables(0).ValuesAsNumpy()
-hourly_precipitation = hourly.Variables(1).ValuesAsNumpy()
-hourly_precipitation_probability = hourly.Variables(2).ValuesAsNumpy()
+    def __init__(self, latitude: float = -23.9608, longitude: float = -46.3336,
+                 sessao=None):
+        self._latitude = latitude
+        self._longitude = longitude
+        self._sessao = sessao or self.criar_sessao()
 
-hourly_data = {
-	"date": pd.date_range(
-		start = pd.to_datetime(hourly.Time(), unit = "s", utc = True),
-		end =  pd.to_datetime(hourly.TimeEnd(), unit = "s", utc = True),
-		freq = pd.Timedelta(seconds = hourly.Interval()),
-		inclusive = "left"
-	).tz_convert(response.Timezone().decode())
-}
+    @staticmethod
+    def criar_sessao():
+        import requests_cache
+        from retry_requests import retry
+        return retry(requests_cache.CachedSession(".cache", expire_after=3600),
+                     retries=5, backoff_factor=0.2)
 
-hourly_data["wind_speed_10m"] = hourly_wind_speed_10m
-hourly_data["precipitation"] = hourly_precipitation
-hourly_data["precipitation_probability"] = hourly_precipitation_probability
+    def buscar_json(self):
+        params = {"latitude": self._latitude, "longitude": self._longitude,
+                  "hourly": ",".join(self.VARIAVEIS),
+                  "wind_speed_unit": "ms",
+                  "timezone": "America/Sao_Paulo"}
+        resposta = self._sessao.get(self.URL, params=params, timeout=15)
+        resposta.raise_for_status()
+        return resposta.json()
 
-hourly_dataframe = pd.DataFrame(data = hourly_data)
-print("\nHourly data\n", hourly_dataframe)
+    def buscar_previsao(self):
+        horario = self.buscar_json()["hourly"]
+        registros = []
+        for i, hora in enumerate(horario["time"]):
+            registro = {"horario": hora}
+            for variavel in self.VARIAVEIS:
+                registro[variavel] = horario[variavel][i]
+            registros.append(registro)
+        return registros
+
+    def buscar_previsao_json(self):
+        return json.dumps(self.buscar_previsao(), ensure_ascii=False)
+
+    def buscar_condicoes(self):
+        return [CondicaoClimatica.de_json(r) for r in self.buscar_previsao()]
+
+    def condicao_em(self, horario: datetime) -> CondicaoClimatica | None:
+        alvo = horario.replace(minute=0, second=0, microsecond=0)
+        for condicao in self.buscar_condicoes():
+            if condicao.get_horario().replace(tzinfo=None) == alvo.replace(tzinfo=None):
+                return condicao
+        return None
+
+
+if __name__ == "__main__":
+    for c in ApiClima().buscar_condicoes()[:24]:
+        print(c.descricao(), "| bloqueia:", c.bloqueia_atracacao(None))
