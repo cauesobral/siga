@@ -92,7 +92,7 @@ class App(tk.Tk):
             return
         self.usuario = usuario
         self.unbind("<Return>")
-        self.mostrar_principal()
+
 
     # ---------------- estrutura principal ----------------
     def mostrar_principal(self):

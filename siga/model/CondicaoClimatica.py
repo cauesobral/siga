@@ -29,22 +29,18 @@ class CondicaoClimatica(EventoDeRisco):
         # o pior entre vento e chuva define o impacto
         self.set_nivel_de_impacto(max(self.classificar_vento(velocidade_vento),
                                       self.classificar_chuva(precipitacao)))
-
     @staticmethod
     def classificar(valor: float, limites):
         for limite, nivel in limites:
             if valor <= limite:
                 return nivel
         return NivelDeImpacto.CRITICO
-
     @staticmethod
     def classificar_vento(velocidade: float):
         return CondicaoClimatica.classificar(velocidade, CondicaoClimatica.LIMITES_VENTO)
-
     @staticmethod
     def classificar_chuva(precipitacao: float):
         return CondicaoClimatica.classificar(precipitacao, CondicaoClimatica.LIMITES_CHUVA)
-
     @classmethod
     def de_json(cls, dados):
         if isinstance(dados, str):
@@ -58,7 +54,7 @@ class CondicaoClimatica(EventoDeRisco):
         return self.get_nivel_de_impacto() >= NivelDeImpacto.ALTO
 
     def descricao(self):
-        return (f"Clima {self._horario:%d/%m %H:%M}: vento {self._velocidade_vento:.1f} m/s, "
+        return (f"{self._horario:%d/%m %H:%M}: vento {self._velocidade_vento:.1f} m/s, "
                 f"chuva {self._precipitacao:.1f} mm "
                 f"(impacto {self.get_nivel_de_impacto().name})")
 

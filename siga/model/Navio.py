@@ -1,7 +1,6 @@
-from abc import ABC, abstractmethod
 from Carga import *
 
-class Navio (ABC):
+class Navio ():
     __nome : str
     __calado : float
     __tamanho : float
@@ -15,11 +14,9 @@ class Navio (ABC):
         self.__cargaAtual = cargaAtual
         self.__capacidade = capacidade
     
-    @abstractmethod
     def calcularCaladoMinimo():
         pass
 
-    @abstractmethod
     def tempoEstimadoOperacao():
         pass
 

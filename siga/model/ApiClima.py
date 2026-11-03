@@ -1,5 +1,7 @@
 import json
 from datetime import datetime
+import requests_cache
+from retry_requests import retry
 
 from CondicaoClimatica import CondicaoClimatica
 
@@ -14,12 +16,9 @@ class ApiClima:
                  sessao=None):
         self._latitude = latitude
         self._longitude = longitude
-        self._sessao = sessao or self.criar_sessao()
+        self._sessao = self.criar_sessao()
 
-    @staticmethod
-    def criar_sessao():
-        import requests_cache
-        from retry_requests import retry
+    def criar_sessao(self):
         return retry(requests_cache.CachedSession(".cache", expire_after=3600),
                      retries=5, backoff_factor=0.2)
 
