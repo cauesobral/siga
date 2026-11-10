@@ -47,7 +47,7 @@ class ApiClima:
     def buscar_condicoes(self):
         return [CondicaoClimatica.de_json(r) for r in self.buscar_previsao()]
 
-    def condicao_em(self, horario: datetime) -> CondicaoClimatica | None:
+    def condicao_em(self, horario: datetime):
         alvo = horario.replace(minute=0, second=0, microsecond=0)
         for condicao in self.buscar_condicoes():
             if condicao.get_horario().replace(tzinfo=None) == alvo.replace(tzinfo=None):

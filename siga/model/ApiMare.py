@@ -1,40 +1,54 @@
-import openmeteo_requests
-
-import pandas as pd
+import json
+from datetime import datetime
 import requests_cache
 from retry_requests import retry
 
-# Setup the Open-Meteo API client with cache and retry on error
-cache_session = requests_cache.CachedSession('.cache', expire_after = 3600)
-retry_session = retry(cache_session, retries = 5, backoff_factor = 0.2)
-openmeteo = openmeteo_requests.Client(session = retry_session)
+class ApiMare:
 
-# Make sure all required weather variables are listed here
-# The order of variables in hourly or daily is important to assign them correctly below
-url = "https://marine-api.open-meteo.com/v1/marine"
-params = {
-	"latitude": -23.9608,
-	"longitude": -46.3336,
-	"current": ["wave_height", "wave_direction", "wave_period", "wave_peak_period"],
-	"forecast_days": 7,
-}
-responses = openmeteo.weather_api(url, params = params)
+    URL = "https://marine-api.open-meteo.com/v1/marine"
+    VARIAVEIS = ["wave_height", "wave_direction", "wave_period",
+                 "sea_level_height_msl"]
 
-# Process first location. Add a for-loop for multiple locations or weather models
-response = responses[0]
-print(f"Coordinates: {response.Latitude()}°N {response.Longitude()}°E")
-print(f"Elevation: {response.Elevation()} m asl")
-print(f"Timezone difference to GMT+0: {response.UtcOffsetSeconds()}s")
+    def __init__(self, latitude: float = -23.9608, longitude: float = -46.3336,
+                 sessao=None):
+        self._latitude = latitude
+        self._longitude = longitude
+        self._sessao = self.criar_sessao()
 
-# Process current data. The order of variables needs to be the same as requested.
-current = response.Current()
-current_wave_height = current.Variables(0).Value()
-current_wave_direction = current.Variables(1).Value()
-current_wave_period = current.Variables(2).Value()
-current_wave_peak_period = current.Variables(3).Value()
+    def criar_sessao(self):
+        return retry(requests_cache.CachedSession(".cache", expire_after=3600),
+                     retries=5, backoff_factor=0.2)
 
-print(f"\nCurrent time: {current.Time()}")
-print(f"Current wave_height: {current_wave_height}")
-print(f"Current wave_direction: {current_wave_direction}")
-print(f"Current wave_period: {current_wave_period}")
-print(f"Current wave_peak_period: {current_wave_peak_period}")
+    def buscar_json(self):
+        params = {"latitude": self._latitude, "longitude": self._longitude,
+                  "hourly": ",".join(self.VARIAVEIS),
+                  "forecast_days": 7,
+                  "timezone": "America/Sao_Paulo"}
+        resposta = self._sessao.get(self.URL, params=params, timeout=15)
+        resposta.raise_for_status()
+        return resposta.json()
+
+    def buscar_previsao(self):
+        horario = self.buscar_json()["hourly"]
+        registros = []
+        for i, hora in enumerate(horario["time"]):
+            registro = {"horario": hora}
+            for variavel in self.VARIAVEIS:
+                registro[variavel] = horario[variavel][i]
+            registros.append(registro)
+        return registros
+
+    def buscar_previsao_json(self):
+        return json.dumps(self.buscar_previsao(), ensure_ascii=False)
+
+    def registro_em(self, horario: datetime):
+        alvo = horario.replace(minute=0, second=0, microsecond=0, tzinfo=None)
+        for registro in self.buscar_previsao():
+            if datetime.fromisoformat(registro["horario"]).replace(tzinfo=None) == alvo:
+                return registro
+        return None
+
+
+if __name__ == "__main__":
+    for registro in ApiMare().buscar_previsao()[:24]:
+        print(registro)

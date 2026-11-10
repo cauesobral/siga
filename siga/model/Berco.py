@@ -1,9 +1,4 @@
-from enum import Enum
-
-class StatusOperacional(Enum):
-    LIVRE = "livre"
-    OCUPADO = "ocupado"
-    MANUTENCAO = "manutencao"
+from StatusOperacional import StatusOperacional
 
 class Berco:
     def __init__(self, identificador: str, capacidade: float, tipos_carga_aceita: list[str]):
@@ -13,13 +8,26 @@ class Berco:
         self._status = StatusOperacional.LIVRE
         self._navio_atual = None
 
+    def get_identificador(self):
+        return self._identificador
+
+    def get_capacidade(self):
+        return self._capacidade
+
+    def get_tipos_carga_aceita(self):
+        return self._tipos_carga_aceita
+
     def get_status(self):
         return self._status
 
+    def get_navio_atual(self):
+        return self._navio_atual
+
     def aceita_navio(self, navio):
         return (self._status == StatusOperacional.LIVRE
-                and navio.carga_atual.tipo in self._tipos_carga_aceita
-                and navio.tamanho <= self._capacidade)
+                and navio.get_carga_atual().get_tipo().lower()
+                in [t.lower() for t in self._tipos_carga_aceita]
+                and navio.get_tamanho() <= self._capacidade)
 
     def ocupar(self, navio):
         if not self.aceita_navio(navio):

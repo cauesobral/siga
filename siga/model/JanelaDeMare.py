@@ -1,5 +1,7 @@
+import json
 from datetime import datetime
 
+from ApiMare import ApiMare
 from EventoDeRisco import EventoDeRisco, NivelDeImpacto
 
 FOLGA_MINIMA_PERCENTUAL = 0.10  
@@ -22,6 +24,28 @@ class JanelaDeMare(EventoDeRisco):
             if altura <= limite:
                 return nivel
         return NivelDeImpacto.BAIXO
+
+    @classmethod
+    def de_json(cls, dados, profundidade_canal: float):
+        if isinstance(dados, str):
+            dados = json.loads(dados)
+        return cls(datetime.fromisoformat(dados["horario"]),
+                   float(dados["sea_level_height_msl"]), profundidade_canal)
+
+    @classmethod
+    def da_api(cls, horario: datetime, profundidade_canal: float,
+               api: ApiMare):
+        registro = api.registro_em(horario)
+        if not registro or registro["sea_level_height_msl"] is None:
+            return None
+        return cls.de_json(registro, profundidade_canal)
+
+    @classmethod
+    def lista_da_api(cls, profundidade_canal: float,
+                     api: ApiMare):
+        return [cls.de_json(r, profundidade_canal)
+                for r in api.buscar_previsao()
+                if r["sea_level_height_msl"] is not None]
 
     def get_horario(self):
         return self._horario
