@@ -32,7 +32,7 @@ class PoliticaDeAtracacao(ABC):
         return berco.aceita_navio(navio) and not self.bloqueios(navio, eventos, data)
 
     def proxima_atracacao(self, fila: list, bercos: list, eventos: list[EventoDeRisco] = (),
-                          data: date):
+                          data: date = None):
         for navio in self.ordenar_fila(fila, eventos):
             for berco in bercos:
                 if self.pode_atracar(navio, berco, eventos, data):

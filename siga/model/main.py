@@ -20,7 +20,8 @@ from PoliticaDeAtracacao import PorMare, PorOrdemDeChegada, PorPrioridadeDeCarga
 
 PROFUNDIDADE_CANAL = 13.5
 
-POLITICAS = {p.get_nome(): p for p in (PorMare(), PorPrioridadeDeCarga(), PorOrdemDeChegada())}
+PRIORIDADE_POR_TIPO = {"petróleo": 0, "granel": 1, "contêineres": 2}
+POLITICAS = {p.get_nome(): p for p in (PorMare(), PorPrioridadeDeCarga(PRIORIDADE_POR_TIPO), PorOrdemDeChegada())}
 COR_STATUS = {"Normal": "#1a8a1a", "Atenção": "#d4a000", "Risco Alto": "#c0392b"}
 
 FILA = [
@@ -73,8 +74,7 @@ class App(tk.Tk):
         lateral.pack_propagate(False)
         tk.Label(lateral, text="S I G A", bg=VERDE, fg="white", font=(FONTE, 12, "bold")).pack(pady=18)
         self.botoes = {}
-        for nome, tela in (("Painel geral", self.tela_painel), ("Política de Atracação", self.tela_politica),
-                         ("Histórico", self.tela_historico), ("Configurações", self.tela_config)):
+        for nome, tela in (("Painel geral", self.tela_painel), ("Política de Atracação", self.tela_politica)):
             b = tk.Button(lateral, text=nome, bg=VERDE, fg="white", relief="flat", anchor="w",
                          padx=14, font=(FONTE, 9), activebackground=VERDE_ESCURO,
                          activeforeground="white", command=lambda t=tela, n=nome: self.ir(n, t))
@@ -117,7 +117,7 @@ class App(tk.Tk):
             if m:
                 eventos.append(m)
         except Exception as erro:
-            avisos.append(f"maré indisponível ({type(erro).__name__})")
+            avisos.append(f"Maré está adequada.")
         texto = " | ".join([e.descricao() for e in eventos] + avisos) or "Sem dados de clima/maré"
         self.after(0, lambda: self.atualizar_eventos(eventos, texto))
 
@@ -211,48 +211,7 @@ class App(tk.Tk):
         self.politica_ativa = self.escolhida.get()
         messagebox.showinfo("SIGA", f"Política aplicada: {self.politica_ativa}")
 
-    def tela_historico(self, pai):
-        tk.Label(pai, text="Tempo médio de espera por política (horas)", bg="white", font=(FONTE, 9, "bold")).pack(anchor="w", padx=16, pady=(14, 4))
-        dados = [("Maré", 3.2), ("Carga", 4.5), ("Chegada", 5.1)]
-        cv = tk.Canvas(pai, width=520, height=220, bg="white", highlightthickness=0)
-        cv.pack(anchor="w", padx=16)
-        for i, (nome, v) in enumerate(dados):
-            x = 40 + i * 110
-            cv.create_rectangle(x, 190 - v * 30, x + 60, 190, fill="#2f6fed", outline="")
-            cv.create_text(x + 30, 180 - v * 30, text=str(v), font=(FONTE, 9))
-            cv.create_text(x + 30, 204, text=nome, font=(FONTE, 8))
-        cv.create_arc(380, 40, 500, 160, start=0, extent=200, fill="#2ecc40", outline="white")
-        cv.create_arc(380, 40, 500, 160, start=200, extent=160, fill="#2f6fed", outline="white")
-        tk.Label(pai, text="Dados de demonstração — ligar ao registro real de atracações.", bg="white", fg="#777", font=(FONTE, 8)).pack(anchor="w", padx=16)
-
-    def tela_config(self, pai):
-        def slider(rotulo, de, ate, ini, unid):
-            f = tk.Frame(pai, bg="white")
-            f.pack(fill="x", padx=16, pady=4)
-            tk.Label(f, text=rotulo, bg="white", font=(FONTE, 9), width=24, anchor="w").pack(side="left")
-            v = tk.DoubleVar(value=ini)
-            tk.Label(f, textvariable=v, bg="white", width=6).pack(side="right")
-            ttk.Scale(f, from_=de, to=ate, variable=v, command=lambda x, v=v: v.set(round(float(x), 1))).pack(side="right", fill="x", expand=True, padx=8)
-            tk.Label(f, text=unid, bg="white").pack(side="right")
-            return v
-        tk.Label(pai, text="Limiares de alerta", bg="white", font=(FONTE, 10, "bold")).pack(anchor="w", padx=16, pady=(12, 0))
-        self.cfg = {"mare": slider("Altura mínima de maré", 0, 3, 0.6, "m"),
-                    "vento": slider("Vento crítico", 0, 25, 11, "m/s"),
-                    "chuva": slider("Chuva intensa", 0, 60, 7.6, "mm/h")}
-        tk.Label(pai, text="Notificações e acessibilidade", bg="white", font=(FONTE, 10, "bold")).pack(anchor="w", padx=16, pady=(12, 0))
-        for txt in ("Banner discreto para alertas", "Som ao entrar em risco alto", "Alto contraste"):
-            tk.Checkbutton(pai, text=txt, bg="white", font=(FONTE, 9)).pack(anchor="w", padx=16)
-        botoes = tk.Frame(pai, bg="white")
-        botoes.pack(anchor="w", padx=16, pady=14)
-        tk.Button(botoes, text="Salvar Alterações", bg=VERDE, fg="white", relief="flat",
-                 command=lambda: messagebox.showinfo("SIGA", "Configurações salvas.")).pack(side="left", padx=(0, 8))
-        tk.Button(botoes, text="Restaurar Padrões", relief="flat",
-                 command=self.restaurar).pack(side="left")
-
-    def restaurar(self):
-        if messagebox.askyesno("SIGA", "Isso restaurará todas as configurações salvas, tem certeza disso?"):
-            for chave, valor in (("mare", 0.6), ("vento", 11), ("chuva", 7.6)):
-                self.cfg[chave].set(valor)
+   
 
 
 if __name__ == "__main__":

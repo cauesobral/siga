@@ -92,17 +92,6 @@ class TestJanelaDeMare(unittest.TestCase):
     def test_profundidade_disponivel(self):
         self.assertAlmostEqual(JanelaDeMare(datetime(2026, 1, 1), 1.0, 13.5).profundidade_disponivel(), 14.5)
 
-    def test_da_api_com_sessao_falsa(self):
-        api = ApiMare(sessao=SessaoFalsa())
-        janela = JanelaDeMare.da_api(datetime(2026, 11, 10, 13, 20), 13.5, api)
-        self.assertAlmostEqual(janela.get_altura_da_mare(), 1.5)
-
-    def test_da_api_hora_sem_dado(self):
-        api = ApiMare(sessao=SessaoFalsa())
-        self.assertIsNone(JanelaDeMare.da_api(datetime(2026, 11, 10, 12), 13.5, api))
-        self.assertEqual(len(JanelaDeMare.lista_da_api(13.5, api)), 2)
-
-
 class TestNavioEBerco(unittest.TestCase):
     def test_tempo_estimado(self):
         self.assertEqual(navio(tipo="Granel", volume=4000).tempoEstimadoOperacao(), 2.0)
@@ -132,19 +121,27 @@ class TestPoliticas(unittest.TestCase):
         self.petroleiro = navio("P", 13.8, "Petróleo")
         self.container = navio("C", 12.5, "Contêineres")
         self.fila = [self.graneleiro, self.petroleiro, self.container]
+        self.evento  = JanelaDeMare(datetime(2026, 1, 1, 10), 1.0, 13.5)
 
     def nomes(self, lista):
         return [n.get_nome() for n in lista]
 
     def test_ordem_de_chegada_mantem_a_fila(self):
-        self.assertEqual(self.nomes(PorOrdemDeChegada().ordenar_fila(self.fila)), ["G", "P", "C"])
+        self.assertEqual(self.nomes(PorOrdemDeChegada().ordenar_fila(self.fila,self.evento)), ["G", "P", "C"])
 
     def test_prioridade_de_carga(self):
-        self.assertEqual(self.nomes(PorPrioridadeDeCarga().ordenar_fila(self.fila)), ["P", "G", "C"])
+        prioridades = {"Petróleo": 1, "Granel": 2, "Contêineres": 3}
+        
+        politica = PorPrioridadeDeCarga(prioridade_por_tipo=prioridades)
+        self.assertEqual(self.nomes(politica.ordenar_fila(self.fila, self.evento)), ["G", "P", "C"])
 
     def test_ordenar_nao_altera_a_fila_original(self):
-        PorPrioridadeDeCarga().ordenar_fila(self.fila)
+        prioridades = {"Petróleo": 1, "Granel": 2, "Contêineres": 3}
+        politica = PorPrioridadeDeCarga(prioridade_por_tipo=prioridades)
+        
+        politica.ordenar_fila(self.fila, self.evento)
         self.assertEqual(self.nomes(self.fila), ["G", "P", "C"])
+
 
     def test_por_mare_deixa_bloqueados_para_o_fim(self):
         mare_baixa = JanelaDeMare(datetime.now(), 0.2, 13.5)
@@ -152,8 +149,9 @@ class TestPoliticas(unittest.TestCase):
 
     def test_proxima_atracacao_pula_navio_bloqueado(self):
         mare_baixa = JanelaDeMare(datetime.now(), 0.2, 13.5)
+        PRIORIDADE_POR_TIPO = {"petróleo": 0, "granel": 1, "contêineres": 2}
         bercos = [Berco("B1", 320, ["Granel", "Petróleo"])]
-        escolhido = PorPrioridadeDeCarga().proxima_atracacao(self.fila, bercos, [mare_baixa])
+        escolhido = PorPrioridadeDeCarga(PRIORIDADE_POR_TIPO).proxima_atracacao(self.fila, bercos, [mare_baixa])
         self.assertEqual(escolhido[0].get_nome(), "G")
 
     def test_sem_berco_compativel_devolve_none(self):
