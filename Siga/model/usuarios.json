@@ -1,0 +1,10 @@
+[
+  {"nome": "admin",    "senha": "admin123",  "porto": "Porto de Santos"},
+  {"nome": "operador", "senha": "op1234",    "porto": "Porto de Santos"},
+  {"nome": "carlos",   "senha": "carlos123", "porto": "Porto do Rio de Janeiro"},
+  {"nome": "renata",   "senha": "renata123", "porto": "Porto do Rio de Janeiro"},
+  {"nome": "marina",   "senha": "marina123", "porto": "Porto de Paranaguá"},
+  {"nome": "jose",     "senha": "jose123",   "porto": "Porto de Paranaguá"},
+  {"nome": "paulo",    "senha": "paulo123",  "porto": "Porto de Suape"},
+  {"nome": "lucia",    "senha": "lucia123",  "porto": "Porto de Suape"}
+]

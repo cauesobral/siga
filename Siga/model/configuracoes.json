@@ -1,0 +1,10 @@
+{
+  "mare_min": 2.31,
+  "vento": 57.1,
+  "chuva": 50.5,
+  "confirmar_politica": true,
+  "notif_nova": true,
+  "notif_sem_espaco": false,
+  "notif_critico": true,
+  "politica_padrao": "Por prioridade de carga"
+}

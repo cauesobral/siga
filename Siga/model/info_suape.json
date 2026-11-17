@@ -1,0 +1,21 @@
+{
+  "navios": [
+    {"nome": "MSC Recife",            "calado": 12.2, "tamanho": 295.0, "carga_tipo": "Contêineres", "carga_volume": 4400.0,  "carga_origem": "Suape",         "carga_destino": "Roterdã",        "capacidade": 5800.0},
+    {"nome": "CMA CGM Capibaribe",    "calado": 11.0, "tamanho": 275.0, "carga_tipo": "Contêineres", "carga_volume": 3100.0,  "carga_origem": "Le Havre",      "carga_destino": "Suape",          "capacidade": 4200.0},
+    {"nome": "Hamburg Sud Recife",    "calado": 10.6, "tamanho": 265.0, "carga_tipo": "Contêineres", "carga_volume": 2700.0,  "carga_origem": "Hamburgo",      "carga_destino": "Suape",          "capacidade": 3800.0},
+    {"nome": "Maersk Nordeste",       "calado": 11.8, "tamanho": 300.0, "carga_tipo": "Contêineres", "carga_volume": 3900.0,  "carga_origem": "Suape",         "carga_destino": "Singapura",      "capacidade": 5200.0},
+    {"nome": "Petrobras Nordeste",    "calado": 15.0, "tamanho": 260.0, "carga_tipo": "Petróleo",    "carga_volume": 80000.0, "carga_origem": "Suape",         "carga_destino": "Houston",        "capacidade": 105000.0},
+    {"nome": "Transpetro Suape",      "calado": 16.5, "tamanho": 278.0, "carga_tipo": "Petróleo",    "carga_volume": 105000.0,"carga_origem": "Lagos",         "carga_destino": "Suape",          "capacidade": 135000.0},
+    {"nome": "BW Atlantic",           "calado": 13.8, "tamanho": 245.0, "carga_tipo": "Petróleo",    "carga_volume": 68000.0, "carga_origem": "Cingapura",     "carga_destino": "Suape",          "capacidade": 90000.0},
+    {"nome": "Vopak Suape",           "calado": 12.5, "tamanho": 230.0, "carga_tipo": "Petróleo",    "carga_volume": 55000.0, "carga_origem": "Suape",         "carga_destino": "Lisboa",         "capacidade": 72000.0},
+    {"nome": "Norsul Pernambuco",     "calado": 11.5, "tamanho": 218.0, "carga_tipo": "Granel",      "carga_volume": 58000.0, "carga_origem": "Suape",         "carga_destino": "Busan",          "capacidade": 72000.0},
+    {"nome": "Graneleiro Nordeste",   "calado": 12.8, "tamanho": 228.0, "carga_tipo": "Granel",      "carga_volume": 72000.0, "carga_origem": "Suape",         "carga_destino": "Xangai",         "capacidade": 88000.0}
+  ],
+  "bercos": [
+    {"identificador": "SP-1", "capacidade": 320.0, "tipos_carga_aceita": ["Contêineres", "Granel", "Petróleo"]},
+    {"identificador": "SP-2", "capacidade": 320.0, "tipos_carga_aceita": ["Contêineres", "Granel", "Petróleo"]},
+    {"identificador": "SP-3", "capacidade": 320.0, "tipos_carga_aceita": ["Contêineres", "Granel", "Petróleo"]},
+    {"identificador": "SP-4", "capacidade": 320.0, "tipos_carga_aceita": ["Contêineres", "Granel", "Petróleo"]},
+    {"identificador": "SP-5", "capacidade": 320.0, "tipos_carga_aceita": ["Contêineres", "Granel", "Petróleo"]}
+  ]
+}

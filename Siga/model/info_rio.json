@@ -1,0 +1,120 @@
+{
+  "navios": [
+    {
+      "nome": "MSC Beatrice",
+      "calado": 12.8,
+      "tamanho": 310.0,
+      "carga_tipo": "Contêineres",
+      "carga_volume": 5200.0,
+      "carga_origem": "Buenos Aires",
+      "carga_destino": "Rio de Janeiro",
+      "capacidade": 6800.0
+    },
+    {
+      "nome": "Petrobras Horizonte",
+      "calado": 15.5,
+      "tamanho": 265.0,
+      "carga_tipo": "Petróleo",
+      "carga_volume": 85000.0,
+      "carga_origem": "Rio de Janeiro",
+      "carga_destino": "Houston",
+      "capacidade": 110000.0
+    },
+    {
+      "nome": "Transpetro Guanabara",
+      "calado": 17.2,
+      "tamanho": 285.0,
+      "carga_tipo": "Petróleo",
+      "carga_volume": 115000.0,
+      "carga_origem": "Bonny",
+      "carga_destino": "Rio de Janeiro",
+      "capacidade": 145000.0
+    },
+    {
+      "nome": "Transpetro Corcovado",
+      "calado": 14.0,
+      "tamanho": 245.0,
+      "carga_tipo": "Petróleo",
+      "carga_volume": 72000.0,
+      "carga_origem": "Rio de Janeiro",
+      "carga_destino": "Roterdã",
+      "capacidade": 95000.0
+    },
+    {
+      "nome": "Vale Itaguaí",
+      "calado": 20.5,
+      "tamanho": 330.0,
+      "carga_tipo": "Granel",
+      "carga_volume": 290000.0,
+      "carga_origem": "Itaguaí",
+      "carga_destino": "Qingdao",
+      "capacidade": 320000.0
+    },
+    {
+      "nome": "Star Bulk Rio",
+      "calado": 13.2,
+      "tamanho": 232.0,
+      "carga_tipo": "Granel",
+      "carga_volume": 78000.0,
+      "carga_origem": "Itaguaí",
+      "carga_destino": "Tianjin",
+      "capacidade": 95000.0
+    }
+  ],
+  "bercos": [
+    {
+      "identificador": "RJ-1",
+      "capacidade": 340.0,
+      "tipos_carga_aceita": [
+        "Contêineres",
+        "Granel",
+        "Petróleo"
+      ]
+    },
+    {
+      "identificador": "RJ-2",
+      "capacidade": 340.0,
+      "tipos_carga_aceita": [
+        "Contêineres",
+        "Granel",
+        "Petróleo"
+      ]
+    },
+    {
+      "identificador": "RJ-3",
+      "capacidade": 340.0,
+      "tipos_carga_aceita": [
+        "Contêineres",
+        "Granel",
+        "Petróleo"
+      ]
+    },
+    {
+      "identificador": "RJ-4",
+      "capacidade": 340.0,
+      "tipos_carga_aceita": [
+        "Contêineres",
+        "Granel",
+        "Petróleo"
+      ]
+    },
+    {
+      "identificador": "RJ-5",
+      "capacidade": 340.0,
+      "tipos_carga_aceita": [
+        "Contêineres",
+        "Granel",
+        "Petróleo"
+      ]
+    },
+    {
+      "identificador": "RJ-6",
+      "capacidade": 10000.0,
+      "tipos_carga_aceita": [
+        "Contêineres",
+        "Granel",
+        "Petróleo"
+      ]
+    }
+  ]
+}

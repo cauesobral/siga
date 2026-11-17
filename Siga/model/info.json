@@ -1,0 +1,357 @@
+{
+  "navios": [
+    {
+      "nome": "MSC Aurora",
+      "calado": 12.5,
+      "tamanho": 300.0,
+      "carga_tipo": "Contêineres",
+      "carga_volume": 4800.0,
+      "carga_origem": "Santos",
+      "carga_destino": "Roterdã",
+      "capacidade": 6000.0
+    },
+    {
+      "nome": "Holandês Voador",
+      "calado": 10.0,
+      "tamanho": 400.0,
+      "carga_tipo": "Contêineres",
+      "carga_volume": 2000.0,
+      "carga_origem": "Holanda",
+      "carga_destino": "França",
+      "capacidade": 10000.0
+    },
+    {
+      "nome": "Maersk Sentosa",
+      "calado": 13.2,
+      "tamanho": 366.0,
+      "carga_tipo": "Contêineres",
+      "carga_volume": 5500.0,
+      "carga_origem": "Singapura",
+      "carga_destino": "Santos",
+      "capacidade": 7200.0
+    },
+    {
+      "nome": "CMA CGM Marco Polo",
+      "calado": 13.5,
+      "tamanho": 396.0,
+      "carga_tipo": "Contêineres",
+      "carga_volume": 6200.0,
+      "carga_origem": "Xangai",
+      "carga_destino": "Santos",
+      "capacidade": 8000.0
+    },
+    {
+      "nome": "Ever Given",
+      "calado": 14.5,
+      "tamanho": 400.0,
+      "carga_tipo": "Contêineres",
+      "carga_volume": 7200.0,
+      "carga_origem": "Hong Kong",
+      "carga_destino": "Roterdã",
+      "capacidade": 9500.0
+    },
+    {
+      "nome": "CSCL Globe",
+      "calado": 13.8,
+      "tamanho": 400.0,
+      "carga_tipo": "Contêineres",
+      "carga_volume": 6800.0,
+      "carga_origem": "Tianjin",
+      "carga_destino": "Hamburgo",
+      "capacidade": 9000.0
+    },
+    {
+      "nome": "MOL Triumph",
+      "calado": 12.0,
+      "tamanho": 400.0,
+      "carga_tipo": "Contêineres",
+      "carga_volume": 5900.0,
+      "carga_origem": "Kobe",
+      "carga_destino": "Santos",
+      "capacidade": 7800.0
+    },
+    {
+      "nome": "Hapag-Lloyd Callao",
+      "calado": 11.5,
+      "tamanho": 335.0,
+      "carga_tipo": "Contêineres",
+      "carga_volume": 4200.0,
+      "carga_origem": "Callao",
+      "carga_destino": "Santos",
+      "capacidade": 5500.0
+    },
+    {
+      "nome": "NYK Argus",
+      "calado": 10.8,
+      "tamanho": 290.0,
+      "carga_tipo": "Contêineres",
+      "carga_volume": 3500.0,
+      "carga_origem": "Yokohama",
+      "carga_destino": "Paranaguá",
+      "capacidade": 4800.0
+    },
+    {
+      "nome": "ZIM Integrated",
+      "calado": 11.2,
+      "tamanho": 300.0,
+      "carga_tipo": "Contêineres",
+      "carga_volume": 3800.0,
+      "carga_origem": "Haifa",
+      "carga_destino": "Rio de Janeiro",
+      "capacidade": 5000.0
+    },
+    {
+      "nome": "Petro Santos",
+      "calado": 13.8,
+      "tamanho": 250.0,
+      "carga_tipo": "Petróleo",
+      "carga_volume": 90000.0,
+      "carga_origem": "Santos",
+      "carga_destino": "Lisboa",
+      "capacidade": 120000.0
+    },
+    {
+      "nome": "Jahre Viking",
+      "calado": 24.6,
+      "tamanho": 458.0,
+      "carga_tipo": "Petróleo",
+      "carga_volume": 280000.0,
+      "carga_origem": "Golfo Pérsico",
+      "carga_destino": "Santos",
+      "capacidade": 320000.0
+    },
+    {
+      "nome": "TI Oceania",
+      "calado": 22.0,
+      "tamanho": 380.0,
+      "carga_tipo": "Petróleo",
+      "carga_volume": 200000.0,
+      "carga_origem": "Ras Tanura",
+      "carga_destino": "Itaqui",
+      "capacidade": 240000.0
+    },
+    {
+      "nome": "Euronav Sienna",
+      "calado": 20.5,
+      "tamanho": 333.0,
+      "carga_tipo": "Petróleo",
+      "carga_volume": 150000.0,
+      "carga_origem": "Milford Haven",
+      "carga_destino": "Santos",
+      "capacidade": 180000.0
+    },
+    {
+      "nome": "Crude Equinor",
+      "calado": 18.0,
+      "tamanho": 310.0,
+      "carga_tipo": "Petróleo",
+      "carga_volume": 100000.0,
+      "carga_origem": "Bergen",
+      "carga_destino": "Itajaí",
+      "capacidade": 130000.0
+    },
+    {
+      "nome": "Teekay Petrolia",
+      "calado": 15.2,
+      "tamanho": 274.0,
+      "carga_tipo": "Petróleo",
+      "carga_volume": 80000.0,
+      "carga_origem": "Aberdeen",
+      "carga_destino": "Paranaguá",
+      "capacidade": 100000.0
+    },
+    {
+      "nome": "Frontline Nordic",
+      "calado": 16.8,
+      "tamanho": 290.0,
+      "carga_tipo": "Petróleo",
+      "carga_volume": 110000.0,
+      "carga_origem": "Oslo",
+      "carga_destino": "Santos",
+      "capacidade": 140000.0
+    },
+    {
+      "nome": "BW Odin",
+      "calado": 14.0,
+      "tamanho": 250.0,
+      "carga_tipo": "Petróleo",
+      "carga_volume": 70000.0,
+      "carga_origem": "Cingapura",
+      "carga_destino": "Santos",
+      "capacidade": 90000.0
+    },
+    {
+      "nome": "Vale Brasil",
+      "calado": 23.0,
+      "tamanho": 362.0,
+      "carga_tipo": "Granel",
+      "carga_volume": 380000.0,
+      "carga_origem": "Ponta da Madeira",
+      "carga_destino": "Qingdao",
+      "capacidade": 400000.0
+    },
+    {
+      "nome": "Berge Stahl",
+      "calado": 22.5,
+      "tamanho": 342.0,
+      "carga_tipo": "Granel",
+      "carga_volume": 350000.0,
+      "carga_origem": "Ponta da Madeira",
+      "carga_destino": "Rotterdam",
+      "capacidade": 380000.0
+    },
+    {
+      "nome": "Pacific Basin Pioneer",
+      "calado": 12.5,
+      "tamanho": 229.0,
+      "carga_tipo": "Granel",
+      "carga_volume": 70000.0,
+      "carga_origem": "Vitória",
+      "carga_destino": "Xangai",
+      "capacidade": 82000.0
+    },
+    {
+      "nome": "Star Bulk Polaris",
+      "calado": 14.0,
+      "tamanho": 245.0,
+      "carga_tipo": "Granel",
+      "carga_volume": 100000.0,
+      "carga_origem": "Tubarão",
+      "carga_destino": "Tianjin",
+      "capacidade": 120000.0
+    },
+    {
+      "nome": "Golden Ocean Balder",
+      "calado": 13.5,
+      "tamanho": 235.0,
+      "carga_tipo": "Granel",
+      "carga_volume": 85000.0,
+      "carga_origem": "Vitória",
+      "carga_destino": "Mombasa",
+      "capacidade": 100000.0
+    },
+    {
+      "nome": "Cargill Panamax",
+      "calado": 11.8,
+      "tamanho": 225.0,
+      "carga_tipo": "Granel",
+      "carga_volume": 65000.0,
+      "carga_origem": "Santos",
+      "carga_destino": "Cairo",
+      "capacidade": 78000.0
+    },
+    {
+      "nome": "BHP Atlantic",
+      "calado": 15.5,
+      "tamanho": 275.0,
+      "carga_tipo": "Granel",
+      "carga_volume": 150000.0,
+      "carga_origem": "Ponta da Madeira",
+      "carga_destino": "Xangai",
+      "capacidade": 175000.0
+    },
+    {
+      "nome": "Rio Tinto Voyager",
+      "calado": 16.0,
+      "tamanho": 290.0,
+      "carga_tipo": "Granel",
+      "carga_volume": 170000.0,
+      "carga_origem": "Vitória",
+      "carga_destino": "Dalian",
+      "capacidade": 190000.0
+    },
+    {
+      "nome": "Nippon Steel Maru",
+      "calado": 13.0,
+      "tamanho": 230.0,
+      "carga_tipo": "Granel",
+      "carga_volume": 75000.0,
+      "carga_origem": "Tubarão",
+      "carga_destino": "Nagoya",
+      "capacidade": 90000.0
+    }
+  ],
+  "bercos": [
+    {
+      "identificador": "B1",
+      "capacidade": 320.0,
+      "tipos_carga_aceita": [
+        "Contêineres",
+        "Granel",
+        "Petróleo"
+      ]
+    },
+    {
+      "identificador": "B2",
+      "capacidade": 320.0,
+      "tipos_carga_aceita": [
+        "Contêineres",
+        "Granel",
+        "Petróleo"
+      ]
+    },
+    {
+      "identificador": "B3",
+      "capacidade": 320.0,
+      "tipos_carga_aceita": [
+        "Contêineres",
+        "Granel",
+        "Petróleo"
+      ]
+    },
+    {
+      "identificador": "B4",
+      "capacidade": 320.0,
+      "tipos_carga_aceita": [
+        "Contêineres",
+        "Granel",
+        "Petróleo"
+      ]
+    },
+    {
+      "identificador": "B5",
+      "capacidade": 320.0,
+      "tipos_carga_aceita": [
+        "Contêineres",
+        "Granel",
+        "Petróleo"
+      ]
+    },
+    {
+      "identificador": "B6",
+      "capacidade": 320.0,
+      "tipos_carga_aceita": [
+        "Contêineres",
+        "Granel",
+        "Petróleo"
+      ]
+    },
+    {
+      "identificador": "B7",
+      "capacidade": 320.0,
+      "tipos_carga_aceita": [
+        "Contêineres",
+        "Granel",
+        "Petróleo"
+      ]
+    },
+    {
+      "identificador": "B8",
+      "capacidade": 320.0,
+      "tipos_carga_aceita": [
+        "Contêineres",
+        "Granel",
+        "Petróleo"
+      ]
+    },
+    {
+      "identificador": "B9",
+      "capacidade": 320.0,
+      "tipos_carga_aceita": [
+        "Contêineres",
+        "Granel",
+        "Petróleo"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "navios": [
+    {"nome": "Graneleiro Paraná",     "calado": 12.0, "tamanho": 225.0, "carga_tipo": "Granel",      "carga_volume": 68000.0, "carga_origem": "Paranaguá",     "carga_destino": "Xangai",         "capacidade": 82000.0},
+    {"nome": "Louis Dreyfus Pinheiro","calado": 13.5, "tamanho": 240.0, "carga_tipo": "Granel",      "carga_volume": 90000.0, "carga_origem": "Paranaguá",     "carga_destino": "Roterdã",        "capacidade": 110000.0},
+    {"nome": "Pacific Basin Iguaçu",  "calado": 11.5, "tamanho": 215.0, "carga_tipo": "Granel",      "carga_volume": 55000.0, "carga_origem": "Paranaguá",     "carga_destino": "Mombasa",        "capacidade": 70000.0},
+    {"nome": "Oldendorff Foz",        "calado": 12.5, "tamanho": 230.0, "carga_tipo": "Granel",      "carga_volume": 72000.0, "carga_origem": "Paranaguá",     "carga_destino": "Tianjin",        "capacidade": 88000.0},
+    {"nome": "Cargill Figueira",      "calado": 11.0, "tamanho": 210.0, "carga_tipo": "Granel",      "carga_volume": 48000.0, "carga_origem": "Paranaguá",     "carga_destino": "Cairo",          "capacidade": 62000.0},
+    {"nome": "Vale Paranaguá",        "calado": 14.5, "tamanho": 258.0, "carga_tipo": "Granel",      "carga_volume": 115000.0,"carga_origem": "Paranaguá",     "carga_destino": "Dalian",         "capacidade": 140000.0},
+    {"nome": "Maersk Curitiba",       "calado": 11.2, "tamanho": 290.0, "carga_tipo": "Contêineres", "carga_volume": 3400.0,  "carga_origem": "Paranaguá",     "carga_destino": "Singapura",      "capacidade": 4600.0},
+    {"nome": "NYK Paraná",            "calado": 10.8, "tamanho": 275.0, "carga_tipo": "Contêineres", "carga_volume": 2800.0,  "carga_origem": "Yokohama",      "carga_destino": "Paranaguá",      "capacidade": 3900.0},
+    {"nome": "BW Paranaguá",          "calado": 14.8, "tamanho": 258.0, "carga_tipo": "Petróleo",    "carga_volume": 78000.0, "carga_origem": "Cingapura",     "carga_destino": "Paranaguá",      "capacidade": 100000.0},
+    {"nome": "Teekay Paraná",         "calado": 13.5, "tamanho": 240.0, "carga_tipo": "Petróleo",    "carga_volume": 62000.0, "carga_origem": "Aberdeen",      "carga_destino": "Paranaguá",      "capacidade": 82000.0}
+  ],
+  "bercos": [
+    {"identificador": "PR-1", "capacidade": 300.0, "tipos_carga_aceita": ["Granel", "Contêineres", "Petróleo"]},
+    {"identificador": "PR-2", "capacidade": 300.0, "tipos_carga_aceita": ["Granel", "Contêineres", "Petróleo"]},
+    {"identificador": "PR-3", "capacidade": 300.0, "tipos_carga_aceita": ["Granel", "Contêineres", "Petróleo"]},
+    {"identificador": "PR-4", "capacidade": 300.0, "tipos_carga_aceita": ["Granel", "Contêineres", "Petróleo"]},
+    {"identificador": "PR-5", "capacidade": 300.0, "tipos_carga_aceita": ["Granel", "Contêineres", "Petróleo"]}
+  ]
+}

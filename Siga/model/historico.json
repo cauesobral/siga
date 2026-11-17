@@ -1,0 +1,104 @@
+[
+  {
+    "timestamp": "2026-11-16T23:12:54",
+    "tipo": "ATRACACAO",
+    "navio_nome": "Graneleiro Sul",
+    "berco_id": "B1"
+  },
+  {
+    "timestamp": "2026-11-16T23:12:56",
+    "tipo": "ATRACACAO",
+    "navio_nome": "Atlântico I",
+    "berco_id": "B2"
+  },
+  {
+    "timestamp": "2026-11-16T23:12:58",
+    "tipo": "LIBERACAO",
+    "navio_nome": "Graneleiro Sul",
+    "berco_id": "B1"
+  },
+  {
+    "timestamp": "2026-11-16T23:12:58",
+    "tipo": "LIBERACAO",
+    "navio_nome": "Atlântico I",
+    "berco_id": "B2"
+  },
+  {
+    "timestamp": "2026-11-17T08:15:34",
+    "tipo": "ATRACACAO",
+    "navio_nome": "Hamburg Sud Rio",
+    "berco_id": "RJ-1"
+  },
+  {
+    "timestamp": "2026-11-17T08:15:39",
+    "tipo": "ATRACACAO",
+    "navio_nome": "CMA CGM Ipanema",
+    "berco_id": "RJ-2"
+  },
+  {
+    "timestamp": "2026-11-17T08:15:41",
+    "tipo": "ATRACACAO",
+    "navio_nome": "Evergreen Tijuca",
+    "berco_id": "RJ-3"
+  },
+  {
+    "timestamp": "2026-11-17T08:15:45",
+    "tipo": "ATRACACAO",
+    "navio_nome": "Norsul Flamengo",
+    "berco_id": "RJ-4"
+  },
+  {
+    "timestamp": "2026-11-17T08:15:50",
+    "tipo": "LIBERACAO",
+    "navio_nome": "Hamburg Sud Rio",
+    "berco_id": "RJ-1"
+  },
+  {
+    "timestamp": "2026-11-17T08:15:50",
+    "tipo": "LIBERACAO",
+    "navio_nome": "CMA CGM Ipanema",
+    "berco_id": "RJ-2"
+  },
+  {
+    "timestamp": "2026-11-17T08:15:50",
+    "tipo": "LIBERACAO",
+    "navio_nome": "Evergreen Tijuca",
+    "berco_id": "RJ-3"
+  },
+  {
+    "timestamp": "2026-11-17T08:15:50",
+    "tipo": "LIBERACAO",
+    "navio_nome": "Norsul Flamengo",
+    "berco_id": "RJ-4"
+  },
+  {
+    "timestamp": "2026-11-17T12:55:37",
+    "tipo": "ATRACACAO",
+    "navio_nome": "Graneleiro Sul",
+    "berco_id": "B1"
+  },
+  {
+    "timestamp": "2026-11-17T13:13:05",
+    "tipo": "ATRACACAO",
+    "navio_nome": "Atlântico I",
+    "berco_id": "B1"
+  },
+  {
+    "timestamp": "2026-11-17T13:13:11",
+    "tipo": "LIBERACAO",
+    "navio_nome": "Atlântico I",
+    "berco_id": "B1"
+  },
+  {
+    "timestamp": "2026-11-17T13:27:50",
+    "tipo": "ATRACACAO",
+    "navio_nome": "Oldendorff Endeavour",
+    "berco_id": "B1"
+  },
+  {
+    "timestamp": "2026-11-17T13:27:52",
+    "tipo": "LIBERACAO",
+    "navio_nome": "Oldendorff Endeavour",
+    "berco_id": "B1"
+  }
+]
