@@ -3,6 +3,7 @@
 **Sistema Inteligente de Gestão de Atracações de Navios**
 
 Atividade apresentada no componente curricular **Programação Orientada a Objetos**.
+Integrantes: Caue Roberto, Gabriel Gonçalves e João Otavio
 
 ---
 
