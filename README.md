@@ -3,7 +3,12 @@
 **Sistema Inteligente de Gestão de Atracações de Navios**
 
 Atividade apresentada no componente curricular **Programação Orientada a Objetos**.
-Integrantes: Caue Roberto, Gabriel Gonçalves e João Otavio
+
+## 👥 Autores
+
+- Caue Roberto
+- Gabriel Gonçalves
+- João Otavio
 
 ---
 
@@ -118,10 +123,6 @@ python main.py
 
 > Os dados de clima e maré dependem de conexão com a internet. Sem conexão, o sistema continua funcionando, mas sem os eventos de risco.
 
-## 👥 Autores
-
-- Nome do integrante 1
-- Nome do integrante 2
 
 ---
 
